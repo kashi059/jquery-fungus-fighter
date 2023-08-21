@@ -66,8 +66,11 @@ function updateHealthAndAP() {
     if (heroAp + changedApValue <= 0) {
         heroAp = 0;
         changedApValue = 0;
+        //makes the mushroom jump with joy that you lost
         $('.freaky-fungus').removeClass('walk');
         $('.freaky-fungus').addClass('jump');
+        //disables the attack buttons
+        $('.attack-btn').prop('disabled', true);
     }
 
     // Update health and AP in the DOM
@@ -104,8 +107,8 @@ function updateHealthAndAP() {
 
 // - ✅ update _state_ variable(s) to make the Freaky Fungus lose hit points (HP), and to reduce your attack points (AP). 
 // - ✅See [Attacks](#attacks) below, for the AP and HP values of each attack
-// -✅ State may be held in one our more variables of your choosing
-// -✅ HP and AP values may not be negative (set to zero, if they would otherwise be negative)
+// - ✅ State may be held in one our more variables of your choosing
+// - ✅ HP and AP values may not be negative (set to zero, if they would otherwise be negative)
 
 
 // **Render state changes to the DOM**
@@ -114,5 +117,5 @@ function updateHealthAndAP() {
 // - ✅Update the text above the enemy fungus (eg, "100 HP")
 // - ✅If the Freaky Fungus runs out of HP, the monster is dead and you win! Replace the `walk` class with a `dead` class on the freaky-fungus element, to make them fall over and die.
 // - ✅If you run out of AP, the monster wins and humanity is doomed 😢 Replace the `walk` class with a `jump` class on the freaky-fungus element, to make them jump for the glory of the fungal race.
-//   - You may no longer attack, if AP is `0`. Give all of the attack buttons a [`disabled`](https://www.w3schools.com/tags/att_button_disabled.asp) attribute, so they may no longer be used. 
+// - ✅You may no longer attack, if AP is `0`. Give all of the attack buttons a [`disabled`](https://www.w3schools.com/tags/att_button_disabled.asp) attribute, so they may no longer be used. 
 
