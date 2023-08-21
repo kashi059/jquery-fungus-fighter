@@ -27,44 +27,59 @@ let changedApValue = 0;
 let changedHpValue = 0;
 function arcaneScepterAttack(){
 
-    changedApValue = -12;
+    changedApValue += -12;
          
-    changedHpValue = -14;
+    changedHpValue += -14;
     updateHealthAndAP();
 
 
 }
 function entangleAttack(){
-    changedApValue = -23;
-    changedHpValue = -9;
+    changedApValue += -23;
+    changedHpValue += -9;
     updateHealthAndAP();
 
 }
 function dragonBladeAttack(){
-    changedApValue = -38;
-    changedHpValue = -47;
+    changedApValue += -38;
+    changedHpValue += -47;
     updateHealthAndAP();
 
 }
 function starFireAttack(){
-    changedApValue = -33;
-    changedHpValue = -25;
+    changedApValue += -33;
+    changedHpValue += -25;
     updateHealthAndAP();
 
 }
 
 
-
 function updateHealthAndAP() {
+    // Prevent negative HP and AP values
+    if (funkyFungusHP + changedHpValue <= 0) {
+        funkyFungusHP = 0;
+        changedHpValue = 0;
+        $('.freaky-fungus').removeClass('walk');
+        $('.freaky-fungus').addClass('dead');
+    }
+
+    if (heroAp + changedApValue <= 0) {
+        heroAp = 0;
+        changedApValue = 0;
+        $('.freaky-fungus').removeClass('walk');
+        $('.freaky-fungus').addClass('jump');
+    }
+
+    // Update health and AP in the DOM
     $('.hp-text').text(funkyFungusHP + changedHpValue);
     $('.ap-text').text(heroAp + changedApValue);
+
+    // Update progress bars (if used)
+    $('#hp-meter').val(funkyFungusHP + changedHpValue);
+    $('#ap-meter').val(heroAp + changedApValue);
+
     console.log('updateHealthAndAP is running');
 }
-
-
-
-
-
 
     // - Updates state which is ->
     
@@ -87,17 +102,17 @@ function updateHealthAndAP() {
 
 // When you click an attack button:
 
-// -  update _state_ variable(s) to make the Freaky Fungus lose hit points (HP), and to reduce your attack points (AP). 
-// - See [Attacks](#attacks) below, for the AP and HP values of each attack
-// - State may be held in one our more variables of your choosing
-// - HP and AP values may not be negative (set to zero, if they would otherwise be negative)
+// - ✅ update _state_ variable(s) to make the Freaky Fungus lose hit points (HP), and to reduce your attack points (AP). 
+// - ✅See [Attacks](#attacks) below, for the AP and HP values of each attack
+// -✅ State may be held in one our more variables of your choosing
+// -✅ HP and AP values may not be negative (set to zero, if they would otherwise be negative)
 
 
 // **Render state changes to the DOM**
 
-// - Update the text above the attack buttons (eg, "100 AP")
-// - Update the text above the enemy fungus (eg, "100 HP")
-// - If the Freaky Fungus runs out of HP, the monster is dead and you win! Replace the `walk` class with a `dead` class on the freaky-fungus element, to make them fall over and die.
-// - If you run out of AP, the monster wins and humanity is doomed 😢 Replace the `walk` class with a `jump` class on the freaky-fungus element, to make them jump for the glory of the fungal race.
+// - ✅Update the text above the attack buttons (eg, "100 AP")
+// - ✅Update the text above the enemy fungus (eg, "100 HP")
+// - ✅If the Freaky Fungus runs out of HP, the monster is dead and you win! Replace the `walk` class with a `dead` class on the freaky-fungus element, to make them fall over and die.
+// - ✅If you run out of AP, the monster wins and humanity is doomed 😢 Replace the `walk` class with a `jump` class on the freaky-fungus element, to make them jump for the glory of the fungal race.
 //   - You may no longer attack, if AP is `0`. Give all of the attack buttons a [`disabled`](https://www.w3schools.com/tags/att_button_disabled.asp) attribute, so they may no longer be used. 
 
